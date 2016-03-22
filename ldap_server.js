@@ -154,9 +154,11 @@ LDAP.prototype.ldapCheck = function (options) {
                                 } else ldapAsyncFut.return(retObject);
                             });
 
-                            res.on('end', function () {
-                                ldapAsyncFut.return(retObject);
-                            });
+                            // This call causes Future issue: "Future resolved more than once"
+                            // Because it is already called in searchEntry handler
+                            /*res.on('end', function () {
+                             ldapAsyncFut.return(retObject);
+                             });*/
 
                         });
                     };
